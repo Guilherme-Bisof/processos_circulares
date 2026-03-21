@@ -1,0 +1,328 @@
+/* ======= ARQUIVAMENTOS CSS ======= */
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #1abc9c;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+    --info: #3498db;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 25px 0;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.page-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.btn-back {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-2px);
+}
+
+/* Cards de estatísticas */
+.stats-card {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stats-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.stats-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Filtros */
+.filter-badge {
+    background: #fff;
+    color: var(--dark);
+    border: 2px solid #e9ecef;
+    padding: 8px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 5px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.filter-badge:hover {
+    background: var(--secondary);
+    color: white;
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.filter-badge.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.filter-badge i {
+    margin-right: 6px;
+}
+
+/* Cards principais */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: none;
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+/* Botões */
+.btn-new {
+    background: linear-gradient(135deg, var(--accent), #16a085);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-new:hover {
+    background: linear-gradient(135deg, #16a085, #138d75);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
+    color: white;
+}
+
+/* Tabela */
+.table-container {
+    background: white;
+    border-radius: 0 0 12px 12px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+    font-weight: 600;
+    color: var(--dark);
+    padding: 15px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Botões de ação */
+.action-btn {
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-warning.action-btn:hover {
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+}
+
+.btn-danger.action-btn:hover {
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Status badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-ativo {
+    background-color: rgba(39, 174, 96, 0.1);
+    color: var(--success);
+}
+
+.status-arquivado {
+    background-color: rgba(149, 165, 166, 0.1);
+    color: #95a5a6;
+}
+
+.status-pendente {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: var(--warning);
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c8d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* Link de arquivo */
+.file-link {
+    color: var(--danger);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.file-link:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .btn-back {
+        position: static;
+        margin-bottom: 15px;
+    }
+
+    .stats-card {
+        margin-bottom: 15px;
+    }
+
+    .table-responsive {
+        border-radius: 0;
+    }
+
+    .filter-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .stats-number {
+        font-size: 2rem;
+    }
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card,
+.stats-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Customizações específicas para arquivamentos */
+.arquivamentos-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.arquivamentos-stats {
+    margin-bottom: 30px;
+}
+
+.arquivamentos-filters {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.arquivamentos-table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}

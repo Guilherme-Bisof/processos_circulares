@@ -1,0 +1,132 @@
+/* ======= Processos Circulares ======= */
+
+/* Layout geral */
+.processos-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Cabeçalho */
+.processos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.processos-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.btn-novo {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-novo:hover {
+    background: linear-gradient(135deg, #2980b9, #1f6391);
+    transform: translateY(-1px);
+}
+
+/* Tabela */
+.table-processos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-processos thead {
+    background: #f5f6f7;
+}
+
+.table-processos th,
+.table-processos td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+}
+
+.table-processos th {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.table-processos tr:hover {
+    background: #f9f9f9;
+}
+
+/* Botões de ação */
+.btn-editar,
+.btn-excluir {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-editar {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-editar:hover {
+    background: #1e8449;
+}
+
+.btn-excluir {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background: #c0392b;
+}
+
+/* Formulários */
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.form-control,
+.form-select {
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    padding: 8px;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Status */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+}
+
+.status-solicitacao {
+    background: #f39c12;
+}
+
+.status-pre-circulo {
+    background: #2980b9;
+}
+
+.status-realizado {
+    background: #27ae60;
+}

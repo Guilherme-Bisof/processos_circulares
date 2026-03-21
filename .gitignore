@@ -1,0 +1,19 @@
+# Arquivos de dados e uploads
+uploads/
+*.db
+*.sqlite
+*.log
+*.tmp
+tmp/
+cache/
+sessions/
+
+# Arquivos de configuração sensíveis
+.env
+config.php
+core/conexao.php
+
+# Arquivos temporários
+*.swp
+*.bak
+*~
