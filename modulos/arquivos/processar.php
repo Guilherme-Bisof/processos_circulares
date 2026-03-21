@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'facilitador']);
 
-// Configurações para upload
+
 $uploadDir = __DIR__ . '/../../uploads/';
 $allowedTypes = ['application/pdf'];
 
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Salvar no banco de dados
+
     if ($id) {
         // Atualização
         $sql = "UPDATE processos_circulares_arquivamentos SET 
@@ -138,6 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Redirecionar se acesso direto
+
 header('Location: listar.php');
 exit;

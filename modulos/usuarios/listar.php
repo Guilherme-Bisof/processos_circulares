@@ -13,7 +13,6 @@ if ($result) {
     die("Erro na consulta: " . $conn->error);
 }
 
-// Contagem por tipo de usuário
 $stats = [
     'total' => count($usuarios),
     'admin' => 0,
@@ -402,7 +401,6 @@ foreach ($usuarios as $usuario) {
                             <?php foreach ($usuarios as $usuario):
                                 $tipoClass = 'badge-' . $usuario['tipo'];
 
-                                // Mapear o tipo para exibição amigável
                                 $tiposExibicao = [
                                     'admin' => 'Administrador',
                                     'recepcao' => 'Recepcionista',
@@ -466,7 +464,7 @@ foreach ($usuarios as $usuario) {
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -486,7 +484,6 @@ foreach ($usuarios as $usuario) {
             filterBadges.forEach(badge => {
                 badge.addEventListener('click', function() {
                     this.classList.toggle('active');
-                    // Implementação real de filtragem iria aqui
                 });
             });
         });

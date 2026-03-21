@@ -65,6 +65,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Redirecionar se acesso direto
 header('Location: listar.php');
 exit;

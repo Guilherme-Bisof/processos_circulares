@@ -104,7 +104,7 @@
         <div id="calendar"></div>
     </div>
 
-    <!-- Modal Novo Evento -->
+    <!-- Novo Evento -->
     <div class="modal fade" id="novoEventoModal" tabindex="-1" aria-labelledby="novoEventoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    <!-- Modal Detalhes -->
+    <!-- Detalhes -->
     <div class="modal fade" id="eventoModal" tabindex="-1" aria-labelledby="eventoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -256,7 +256,7 @@
                         </div>
                     </div>
 
-                    <!-- Seção para alterar status do círculo (apenas para processos circulares) -->
+                    <!-- alterar status do círculo -->
                     <div class="status-section" id="statusSection" style="display: none;">
                         <h6><i class="fas fa-sync-alt me-2"></i> Alterar Status do Círculo</h6>
                         <div class="d-flex flex-wrap gap-2 mt-3">
@@ -306,15 +306,14 @@
     <script>
         let currentEventId = null;
         let currentEventType = null;
-        let calendar; // Variável global para o calendário
-
+        let calendar;
         function showDebug(msg) {
             document.getElementById('debugMsg').innerText = msg;
             document.getElementById('debug').style.display = 'block';
             console.log('Debug:', msg);
         }
 
-        // Função para mostrar/ocultar a seção de status
+        // mostrar/ocultar a seção de status
         function toggleStatusSection(show) {
             const statusSection = document.getElementById('statusSection');
             statusSection.style.display = show ? 'block' : 'none';
@@ -422,7 +421,6 @@
                         document.getElementById('editarLink').style.display = 'inline-block';
                         document.getElementById('excluirBtn').style.display = 'inline-block';
 
-                        // Excluir via AJAX
                         document.getElementById('excluirBtn').onclick = function() {
                             if (confirm('Tem certeza que deseja excluir este agendamento?')) {
                                 axios.post('../agenda/agenda.php?action=delete', {
@@ -439,7 +437,6 @@
                             }
                         };
 
-                        // Ocultar seção de status para eventos de agenda
                         toggleStatusSection(false);
                     } else if (currentEventType === 'processo_circular') {
                         document.getElementById('eventoModalLabel').innerHTML = '<i class="fas fa-info-circle me-2"></i> Detalhes do Processo Circular';
@@ -472,7 +469,6 @@
                         document.getElementById('editarLink').href = `../processos_circulares/editar.php?id=${props.id}`;
                         document.getElementById('editarLink').style.display = 'inline-block';
 
-                        // Excluir via link com confirmação
                         const excluirBtn = document.getElementById('excluirBtn');
                         excluirBtn.style.display = 'inline-block';
                         excluirBtn.removeAttribute('onclick');
@@ -483,7 +479,7 @@
                             }
                         };
 
-                        // Mostrar seção de status para processos circulares
+                        // status para processos circulares
                         toggleStatusSection(true);
                     }
 
@@ -495,7 +491,6 @@
             calendar.render();
             showDebug('Calendário renderizado!');
 
-            // Formulário para novo evento
             document.getElementById('formNovoEvento').addEventListener('submit', function(e) {
                 e.preventDefault();
 
@@ -521,7 +516,6 @@
                         console.log('Resposta completa:', response);
                         console.log('Dados da resposta:', response.data);
 
-                        // Verificar se a resposta tem os dados esperados
                         if (response.data && (response.data.id || response.data.success)) {
                             showDebug('Agendamento criado com sucesso!');
                             calendar.refetchEvents();
@@ -540,7 +534,6 @@
                         showDebug('Erro ao criar agendamento: ' + error.message);
                         console.error('Erro completo:', error);
 
-                        // Mostrar mais detalhes do erro se disponível
                         if (error.response) {
                             console.error('Status:', error.response.status);
                             console.error('Headers:', error.response.headers);
@@ -560,7 +553,6 @@
                     else if (status === 'falta') situacao = 'Faltou';
                     else if (status === 'cancelado') situacao = 'Cancelado';
 
-                    // Atualizar situação no banco de dados
                     fetch('../processos_circulares/atualizar_situacao.php', {
                             method: 'POST',
                             headers: {
@@ -572,7 +564,6 @@
                         .then(data => {
                             if (data.success) {
                                 alert('Status atualizado com sucesso!');
-                                // Fechar o modal e recarregar os eventos
                                 bootstrap.Modal.getInstance(document.getElementById('eventoModal')).hide();
                                 calendar.refetchEvents();
                             } else {

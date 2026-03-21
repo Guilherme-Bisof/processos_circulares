@@ -33,13 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $psicologa_nome = $_POST['psicologa_nome'] ?? '';
     $ativo = isset($_POST['ativo']) ? 1 : 0;
 
-    // Validação básica
+    // Validação 
     if (empty($nome) || empty($usuario_val) || empty($tipo)) {
         $erro = 'Preencha todos os campos obrigatórios';
     } elseif ($tipo === 'psicologa' && empty($psicologa_nome)) {
         $erro = 'Para tipo Psicóloga, o nome da psicóloga é obrigatório';
     } else {
-        // Montar query de atualização
         $params = [$nome, $usuario_val, $tipo, $psicologa_nome, $ativo, $id];
         $types = "sssssi";
 
@@ -59,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             $sucesso = 'Usuário atualizado com sucesso!';
-            // Atualizar dados locais
             $usuario['nome'] = $nome;
             $usuario['usuario'] = $usuario_val;
             $usuario['tipo'] = $tipo;
@@ -82,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos mantidos do novo.php */
+
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -241,7 +239,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -260,10 +257,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            // Inicializar estado
             togglePsicologaField();
 
-            // Adicionar listener para mudanças
             tipoSelect.addEventListener('change', togglePsicologaField);
         });
     </script>

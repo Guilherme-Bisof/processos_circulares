@@ -45,7 +45,7 @@ include './core/auth.php';
             </div>
         </div>
 
-        <!-- Dashboard Cards -->
+        <!-- Dashboard -->
         <div class="dashboard-wrapper">
             <div class="dashboard-grid">
                 <a href="modulos/agenda/index.php" class="dashboard-card">
@@ -99,7 +99,6 @@ include './core/auth.php';
                 <?php endif; ?>
             </div>
         </div>
-        <!-- Logout -->
         <div class="logout-container">
             <a href="logout.php" class="btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Sair

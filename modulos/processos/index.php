@@ -1,5 +1,5 @@
 <?php
-// processos_circulares/index.php
+
 require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'recepcao', 'psicologa']);
@@ -7,14 +7,14 @@ permitir(['admin', 'recepcao', 'psicologa']);
 $flashSuccess = getFlash('success');
 $flashError = getFlash('error');
 
-// Obter filtros da URL
+
 $filtro_status = $_GET['filtro'] ?? 'todos';
 $filtro_situacao = $_GET['situacao'] ?? 'todos';
 
-// Construir a consulta SQL com base nos filtros
+
 $sql = "SELECT * FROM processos_circulares_total WHERE 1=1";
 
-// Aplicar filtros
+
 if ($filtro_status !== 'todos') {
     $sql .= " AND status = '" . $conn->real_escape_string($filtro_status) . "'";
 }
@@ -33,12 +33,12 @@ if ($result) {
     die("Erro na consulta: " . $conn->error);
 }
 
-// Consulta para estatísticas (todos os registros, sem filtros)
+
 $sql_stats = "SELECT * FROM processos_circulares_total";
 $result_stats = $conn->query($sql_stats);
 $todos_processos = $result_stats->fetch_all(MYSQLI_ASSOC);
 
-// Contagem por status
+
 $stats = [
     'total' => count($todos_processos),
     'solicitacao' => 0,
@@ -69,7 +69,6 @@ foreach ($todos_processos as $processo) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../../assets/css/processos.css">
 </head>
 
@@ -117,7 +116,6 @@ foreach ($todos_processos as $processo) {
         <div class="mb-4">
             <h4><i class="fas fa-filter me-2"></i> Filtros</h4>
             <div class="d-flex flex-wrap">
-                <!-- Filtros de Status -->
                 <a href="?filtro=todos&situacao=<?= $filtro_situacao ?>"
                     class="filter-badge <?= $filtro_status === 'todos' ? 'active' : '' ?>">
                     <i class="fas fa-globe-americas me-2"></i> Todos
@@ -135,10 +133,8 @@ foreach ($todos_processos as $processo) {
                     <i class="fas fa-ban me-2"></i> Cancelado
                 </a>
 
-                <!-- Separador visual -->
                 <div class="w-100 my-2"></div>
 
-                <!-- Filtros de Situação -->
                 <a href="?filtro=<?= $filtro_status ?>&situacao=todos"
                     class="filter-badge <?= $filtro_situacao === 'todos' ? 'active' : '' ?>">
                     <i class="fas fa-list me-2"></i> Todas situações
@@ -270,7 +266,8 @@ foreach ($todos_processos as $processo) {
                             <?php endif; ?>
                         </p>
                         <a href="novo.php" class="btn btn-primary me-2">
-                            <i class="fas fa-plus me-1"></i>Criar Primeiro Processo
+                            <i class="fas fa-plus me-1"></i>
+                            <p>Criar Primeiro Processo</p>
                         </a>
                         <?php if ($filtro_status !== 'todos' || $filtro_situacao !== 'todos'): ?>
                             <a href="index.php" class="btn btn-outline-primary">
@@ -289,11 +286,10 @@ foreach ($todos_processos as $processo) {
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Adicionar efeito de confirmação para exclusão
         document.addEventListener('DOMContentLoaded', function() {
             const deleteButtons = document.querySelectorAll('.btn-danger');
 

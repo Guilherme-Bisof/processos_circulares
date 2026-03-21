@@ -1,5 +1,5 @@
 <?php
-// processos_circulares/novo.php
+
 require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'recepcao']);
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $observacoes = $_POST['observacoes'] ?? '';
     $status = $_POST['status'] ?? 'Em andamento';
 
-    // Validação básica
+    // Validação
     if (empty($numero_processo) || empty($infratores) || empty($vitimas) || empty($data_bo) || empty($data_entrada) || empty($facilitador)) {
         $erro = 'Preencha todos os campos obrigatórios';
     } else {
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
                 $sucesso = 'Processo cadastrado com sucesso!';
-                // Limpar formulário após sucesso
+
                 $_POST = [];
             } else {
                 $erro = 'Erro ao cadastrar processo: ' . $stmt->error;
@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

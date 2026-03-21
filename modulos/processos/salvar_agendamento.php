@@ -1,12 +1,12 @@
 <?php
-// processos_circulares/salvar_agendamento.php
 
-// Definir header JSON no início para garantir resposta em JSON
+
+
 header('Content-Type: application/json');
 
-// Capturar erros PHP e converter para JSON
+
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Não mostrar erros na tela
+ini_set('display_errors', 0);
 
 try {
     require_once __DIR__ . '/../../core/conexao.php';
@@ -43,7 +43,7 @@ try {
 
     $stmt_check->close();
 
-    // Verificar estrutura da coluna situacao
+
     $sql_describe = "SHOW COLUMNS FROM processos_circulares_total LIKE 'situacao'";
     $result_describe = $conn->query($sql_describe);
     $column_info = $result_describe->fetch_assoc();
@@ -110,10 +110,10 @@ try {
 
     $stmt->close();
 } catch (Exception $e) {
-    // Log do erro (opcional)
+
     error_log("Erro em salvar_agendamento.php: " . $e->getMessage());
 
-    // Retornar erro em JSON
+
     echo json_encode([
         'success' => false,
         'message' => 'Erro interno do servidor: ' . $e->getMessage()

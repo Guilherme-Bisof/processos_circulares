@@ -3,7 +3,6 @@ require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'recepcao_agenda']);
 
-// Consulta usando MySQLi
 $sql = "SELECT * FROM processos_circulares_oficios ORDER BY data_criacao DESC";
 $result = $conn->query($sql);
 
@@ -393,7 +392,6 @@ if ($result) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Adicionar efeito de confirmação para exclusão
         document.addEventListener('DOMContentLoaded', function() {
             const deleteButtons = document.querySelectorAll('.btn-danger');
 
@@ -410,7 +408,6 @@ if ($result) {
             filterBadges.forEach(badge => {
                 badge.addEventListener('click', function() {
                     this.classList.toggle('active');
-                    // Aqui você implementaria a lógica de filtragem real
                 });
             });
         });

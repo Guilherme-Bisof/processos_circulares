@@ -1,9 +1,9 @@
 <?php
-// Arquivo de debug para testar a criação de agendamentos
+
 require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 
-// Habilitar exibição de erros
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -31,7 +31,7 @@ if ($action === 'test_create') {
     echo "\nDados de teste:\n";
     print_r($dados_teste);
 
-    // Testar inserção no banco
+
     $sql = "INSERT INTO processos_circulares_agenda (
         nome_completo,
         participantes,

@@ -147,7 +147,6 @@ permitir(['admin', 'recepcao_agenda']);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Definir data atual como padrão
         document.getElementById('data_criacao').valueAsDate = new Date();
     </script>
 </body>

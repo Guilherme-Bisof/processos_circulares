@@ -3,14 +3,14 @@ require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'facilitador']);
 
-// Obter filtros da URL
+
 $filtro_status = $_GET['status'] ?? 'todos';
 $filtro_facilitador = $_GET['facilitador'] ?? 'todos';
 
-// Construir a consulta SQL com base nos filtros
+
 $sql = "SELECT * FROM processos_circulares_arquivamentos WHERE 1=1";
 
-// Aplicar filtros
+
 if ($filtro_status !== 'todos') {
     if ($filtro_status === 'com_relatorio') {
         $sql .= " AND arquivo_relatorio IS NOT NULL AND arquivo_relatorio != ''";
@@ -37,7 +37,7 @@ $stmt_stats->execute();
 $result_stats = $stmt_stats->get_result();
 $todos_arquivamentos = $result_stats->fetch_all(MYSQLI_ASSOC);
 
-// Contagem para estatísticas
+
 $stats = [
     'total' => count($todos_arquivamentos),
     'com_relatorio' => 0,
@@ -53,7 +53,7 @@ foreach ($todos_arquivamentos as $arq) {
     } else {
         $stats['pendentes']++;
     }
-    
+
     // Este mês
     if ($arq['envio_relatorio'] && date('Y-m', strtotime($arq['envio_relatorio'])) === $mes_atual) {
         $stats['este_mes']++;
@@ -91,7 +91,7 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
     </div>
 
     <div class="container py-4">
-        <!-- Cards de estatísticas -->
+
         <div class="row mb-4">
             <div class="col-md-3">
                 <div class="stats-card">
@@ -123,7 +123,7 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
         <div class="mb-4">
             <h4><i class="fas fa-filter me-2"></i> Filtros</h4>
             <div class="d-flex flex-wrap">
-                <!-- Filtros por status -->
+
                 <a href="?status=todos&facilitador=<?= $filtro_facilitador ?>"
                     class="filter-badge <?= $filtro_status === 'todos' ? 'active' : '' ?>">
                     <i class="fas fa-globe-americas me-2"></i> Todos
@@ -137,7 +137,7 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
                     <i class="fas fa-clock me-2"></i> Pendentes
                 </a>
 
-                <!-- Separador visual -->
+
                 <div class="w-100 my-2"></div>
 
                 <!-- Filtros por facilitador -->
@@ -154,7 +154,7 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Tabela principal -->
+
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
@@ -210,8 +210,8 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
                                         </td>
                                         <td>
                                             <?php if ($arq['arquivo_relatorio']): ?>
-                                                <a href="../uploads/<?= $arq['arquivo_relatorio'] ?>" 
-                                                   target="_blank" class="file-link">
+                                                <a href="../uploads/<?= $arq['arquivo_relatorio'] ?>"
+                                                    target="_blank" class="file-link">
                                                     <i class="fas fa-file-pdf me-1"></i> Ver
                                                 </a>
                                             <?php else: ?>
@@ -222,15 +222,15 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
                                         </td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <a href="editar.php?id=<?= $arq['id'] ?>" 
-                                                   class="btn btn-sm btn-warning action-btn" 
-                                                   title="Editar">
+                                                <a href="editar.php?id=<?= $arq['id'] ?>"
+                                                    class="btn btn-sm btn-warning action-btn"
+                                                    title="Editar">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="processar.php?action=delete&id=<?= $arq['id'] ?>"
-                                                   class="btn btn-sm btn-danger action-btn"
-                                                   title="Excluir"
-                                                   onclick="return confirm('Tem certeza que deseja excluir este arquivamento permanentemente?')">
+                                                    class="btn btn-sm btn-danger action-btn"
+                                                    title="Excluir"
+                                                    onclick="return confirm('Tem certeza que deseja excluir este arquivamento permanentemente?')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </div>
@@ -264,19 +264,18 @@ $facilitadores = $result_facilitadores->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Rodapé -->
+
         <div class="text-center mt-4 text-muted">
             <p>Sistema de Gestão de Arquivamentos</p>
             <p>&copy; <?= date('Y') ?> Departamento de Licença. Todos os direitos reservados.</p>
         </div>
     </div>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Adicionar efeito de confirmação para exclusão
         document.addEventListener('DOMContentLoaded', function() {
             const deleteButtons = document.querySelectorAll('.btn-danger');
 

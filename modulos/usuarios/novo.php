@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $facilitador_nome = $_POST['facilitador_nome'] ?? '';
     $ativo = isset($_POST['ativo']) ? 1 : 0;
 
-    // Validação básica
+    // Validação 
     if (empty($nome) || empty($usuario) || empty($senha) || empty($tipo)) {
         $erro = 'Preencha todos os campos obrigatórios';
     } elseif ($tipo === 'facilitador' && empty($facilitador_nome)) {
@@ -23,14 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Criptografar senha
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        // Inserir no banco
+
         $stmt = $conn->prepare("INSERT INTO usuarios_circulares (nome, usuario, senha, tipo, facilitador_nome, ativo) 
                                VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssi", $nome, $usuario, $senha_hash, $tipo, $facilitador_nome, $ativo);
 
         if ($stmt->execute()) {
             $sucesso = 'Usuário cadastrado com sucesso!';
-            // Limpar formulário após sucesso
             $_POST = [];
         } else {
             $erro = 'Erro ao cadastrar usuário: ' . $stmt->error;
@@ -49,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos mantidos do arquivo principal */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -215,7 +213,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const tipoSelect = document.getElementById('tipo');
             const facilitadorContainer = document.getElementById('facilitadorContainer');
 
-            // Mostrar/ocultar campo de nome da psicóloga
             function togglefacilitadorField() {
                 if (tipoSelect.value === 'facilitador') {
                     facilitadorContainer.style.display = 'block';
@@ -226,10 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            // Inicializar estado
             togglefacilitadorField();
 
-            // Adicionar listener para mudanças
             tipoSelect.addEventListener('change', togglefacilitadorField);
         });
     </script>

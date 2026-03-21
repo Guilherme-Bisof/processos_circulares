@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
-permitir(['admin', 'facilitador']); // Corrigido: trocado 'psicologa' por 'facilitador'
+permitir(['admin', 'facilitador']); 
 
 if (!isset($_GET['id'])) {
     header('Location: listar.php');
     exit;
 }
 
-// Buscar facilitadores cadastrados
+
 $sqlFacilitadores = "SELECT id, CASE WHEN facilitador_nome is NOT NULL and facilitador_nome != '' THEN facilitador_nome ELSE nome END AS nome_exibicao FROM usuarios_circulares WHERE tipo = 'facilitador' AND ativo = 1";
 $resultFacilitadores = $conn->query($sqlFacilitadores);
 $facilitadores = $resultFacilitadores->fetch_all(MYSQLI_ASSOC);

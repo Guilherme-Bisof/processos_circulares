@@ -1,18 +1,18 @@
 <?php
-// processos_circulares/atualizar_situacao.php
 
-// Definir header JSON no início para garantir resposta em JSON
+
+
 header('Content-Type: application/json');
 
-// Capturar erros PHP e converter para JSON
+
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Não mostrar erros na tela
+ini_set('display_errors', 0);
 
 try {
     require_once __DIR__ . '/../../core/conexao.php';
     require_once __DIR__ . '/../../core/auth.php';
 
-    // Verificar se é uma requisição POST
+
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método não permitido');
     }
@@ -72,10 +72,9 @@ try {
 
     $stmt->close();
 } catch (Exception $e) {
-    // Log do erro (opcional)
+
     error_log("Erro em atualizar_situacao.php: " . $e->getMessage());
 
-    // Retornar erro em JSON
     echo json_encode([
         'success' => false,
         'message' => 'Erro interno do servidor: ' . $e->getMessage()

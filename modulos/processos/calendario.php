@@ -1,13 +1,13 @@
 <?php
-// processos_circulares/calendario.php
+
 require_once __DIR__ . '/../../core/conexao.php';
 require_once __DIR__ . '/../../core/auth.php';
 permitir(['admin', 'recepcao', 'psicologa']);
 
-// Verificar se há um processo_id na URL
+
 $processo_id = isset($_GET['processo_id']) ? intval($_GET['processo_id']) : null;
 
-// Consulta para buscar todos os processos (para o select do formulário)
+
 $sql_processos = "SELECT id, numero_processo FROM processos_circulares_total";
 $result_processos = $conn->query($sql_processos);
 $processos = [];
@@ -17,7 +17,7 @@ if ($result_processos) {
     die("Erro na consulta de processos: " . $conn->error);
 }
 
-// Consulta usando MySQLi para eventos
+
 $sql = "SELECT id, numero_processo, facilitador, data_circulo, situacao 
         FROM processos_circulares_total 
         WHERE data_circulo IS NOT NULL 
@@ -304,7 +304,7 @@ if ($result) {
             color: #6c757d;
         }
 
-        /* Estilo para o modal */
+        /* modal */
         .modal-content {
             border-radius: 12px;
             overflow: hidden;
@@ -325,7 +325,7 @@ if ($result) {
             background: linear-gradient(135deg, #16a085, var(--accent));
         }
 
-        /* Novo estilo para botão de agendamento */
+        /* botão de agendamento */
         .btn-agendar-cal {
             background: linear-gradient(135deg, var(--purple), #8e44ad);
             border: none;
@@ -346,7 +346,7 @@ if ($result) {
             color: white;
         }
 
-        /* Estilo para indicadores de status */
+        /* indicadores de status */
         .event-realizado {
             background-color: #e8f5e9 !important;
             border-left: 4px solid #4caf50 !important;
@@ -480,7 +480,7 @@ if ($result) {
         </div>
     </div>
 
-    <!-- Modal de Agendamento -->
+    <!--  Agendamento -->
     <div class="modal fade" id="agendarModal" tabindex="-1" aria-labelledby="agendarModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -515,7 +515,7 @@ if ($result) {
         </div>
     </div>
 
-    <!-- Modal de Status do Círculo -->
+    <!-- Status do Círculo -->
     <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -550,10 +550,10 @@ if ($result) {
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- FullCalendar JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/pt-br.min.js"></script>
 
@@ -562,7 +562,7 @@ if ($result) {
             const calendarEl = document.getElementById('calendar');
             const eventos = <?php echo json_encode($eventos); ?>;
 
-            // Elementos do modal
+
             const agendarModal = new bootstrap.Modal(document.getElementById('agendarModal'));
             const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
             const btnAgendar = document.getElementById('btnAgendar');
@@ -571,7 +571,7 @@ if ($result) {
             const dataCirculoInput = document.getElementById('data_circulo');
             const eventInfo = document.getElementById('eventInfo');
 
-            // Preencher data atual como padrão
+
             const now = new Date();
             const formattedNow = now.toISOString().slice(0, 16);
             dataCirculoInput.value = formattedNow;
@@ -586,7 +586,7 @@ if ($result) {
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 events: eventos.map(evento => {
-                    // Determinar classe CSS baseada na situação
+
                     let eventClass = 'event-agendado';
                     if (evento.situacao === 'Círculo realizado') eventClass = 'event-realizado';
                     else if (evento.situacao === 'Faltou') eventClass = 'event-falta';
@@ -608,30 +608,29 @@ if ($result) {
                     const eventoId = evento.extendedProps.id;
                     const situacao = evento.extendedProps.situacao;
 
-                    // Preencher informações do evento no modal
+
                     eventInfo.innerHTML = `
                         <p><strong>Processo:</strong> ${evento.title}</p>
                         <p><strong>Data:</strong> ${evento.start.toLocaleString('pt-BR')}</p>
                         <p><strong>Status:</strong> <span class="status-badge ${situacao === 'Círculo realizado' ? 'bg-success' : situacao === 'Faltou' ? 'bg-warning' : situacao === 'Cancelado' ? 'bg-danger' : 'bg-info'}">${situacao}</span></p>
                     `;
 
-                    // Armazenar o id do evento no modal
+
                     statusModal._element.dataset.eventId = eventoId;
 
-                    // Abrir o modal
+
                     statusModal.show();
                 },
                 dateClick: function(info) {
-                    // Quando clica em um dia, preencher a data no modal
+
                     const data = info.date;
                     const dataISO = data.toISOString();
                     const dataLocal = new Date(dataISO);
 
-                    // Formatar para o input datetime-local (removendo os segundos e o Z)
+
                     const formattedDate = dataLocal.toISOString().slice(0, 16);
                     dataCirculoInput.value = formattedDate;
 
-                    // Abrir o modal
                     agendarModal.show();
                 },
                 eventContent: function(arg) {
@@ -642,7 +641,7 @@ if ($result) {
                     title.classList.add('fc-event-title');
                     title.innerHTML = arg.event.title;
 
-                    // Adicionar ícone de status
+
                     const situacao = arg.event.extendedProps.situacao;
                     let icon = '';
                     if (situacao === 'Círculo realizado') icon = '<i class="fas fa-check-circle me-1"></i>';
@@ -676,12 +675,11 @@ if ($result) {
 
             calendar.render();
 
-            // Abrir modal ao clicar no botão
+
             btnAgendar.addEventListener('click', function() {
                 agendarModal.show();
             });
 
-            // Salvar agendamento
             btnSalvar.addEventListener('click', function() {
                 const processoId = processoSelect.value;
                 const dataCirculo = dataCirculoInput.value;
@@ -691,7 +689,6 @@ if ($result) {
                     return;
                 }
 
-                // Enviar dados via AJAX para salvar o agendamento
                 const formData = new FormData();
                 formData.append('processo_id', processoId);
                 formData.append('data_circulo', dataCirculo);
@@ -705,7 +702,7 @@ if ($result) {
                         if (data.success) {
                             alert('Agendamento salvo com sucesso!');
                             agendarModal.hide();
-                            // Recarregar a página para atualizar o calendário
+
                             location.reload();
                         } else {
                             alert('Erro ao salvar: ' + data.message);
@@ -717,7 +714,7 @@ if ($result) {
                     });
             });
 
-            // Evento para botões de status
+
             document.querySelectorAll('.status-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const status = this.dataset.status;
@@ -728,7 +725,7 @@ if ($result) {
                     else if (status === 'falta') situacao = 'Faltou';
                     else if (status === 'cancelado') situacao = 'Cancelado';
 
-                    // Atualizar situação no banco de dados
+
                     fetch('atualizar_situacao.php', {
                             method: 'POST',
                             headers: {

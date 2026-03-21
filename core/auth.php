@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Se não tiver login, manda para o login
+// Se não tiver logado, manda para o login
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../login.php");
     exit();
