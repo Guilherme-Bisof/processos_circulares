@@ -63,7 +63,8 @@ A aplicação foi submetida a uma esteira de refatoração focada em blindagem c
 
 A engenharia do projeto adota o isolamento de escopos e responsabilidades por módulos:
 
-`processos_circulares/
+```
+processos_circulares/
 ├── core/            # Configurações globais, conexão PDO/MySQLi e regras de autenticação
 ├── modulos/         # Funcionalidades isoladas encapsuladas por contexto de negócio
 │   ├── agenda/      # Regras e visualização do cronograma interno
@@ -73,7 +74,8 @@ A engenharia do projeto adota o isolamento de escopos e responsabilidades por m�
 │   └── usuarios/    # Gestão cadastral e controle de níveis de privilégios
 ├── assets/          # Ativos estáticos compilados (CSS, JS, Imagens)
 ├── uploads/         # Repositório físico local de documentos anexados
-└── *.php            # Pontos de entrada e rotas globais da aplicação (Login, Painel)` 
+└── *.php            # Pontos de entrada e rotas globais da aplicação (Login, Painel)
+``` 
 
 ---
 
